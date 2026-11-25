@@ -387,6 +387,7 @@ def conversation_detail(cid):
 def health():
     return jsonify(status="ok", application="AI Customer Support Chatbot")
 
+init_db()
+
 if __name__ == "__main__":
-    init_db()
     app.run(debug=True)
