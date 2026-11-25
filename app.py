@@ -54,10 +54,32 @@ def init_db():
             FOREIGN KEY(conversation_id) REFERENCES conversations(id) ON DELETE CASCADE
         );
         """)
-        admin = con.execute("SELECT id FROM users WHERE email=?", ("admin@demo.com",)).fetchone()
-        if not admin:
-            con.execute("INSERT INTO users(name,email,password,role,created_at) VALUES(?,?,?,?,?)",
-                ("Administrator", "admin@demo.com", generate_password_hash("Admin@123"), "admin", datetime.now().isoformat(timespec="seconds")))
+        owner_email = os.getenv("OWNER_EMAIL", "faizakhtar567@gmail.com")
+owner_password = os.getenv("OWNER_PASSWORD")
+
+admin = con.execute(
+    "SELECT id FROM users WHERE role='admin' ORDER BY id LIMIT 1"
+).fetchone()
+
+if admin:
+    if owner_password:
+        con.execute(
+            "UPDATE users SET name=?, email=?, password=? WHERE id=?",
+            ("Faiz Akhtar", owner_email,
+             generate_password_hash(owner_password), admin["id"])
+        )
+    else:
+        con.execute(
+            "UPDATE users SET name=?, email=? WHERE id=?",
+            ("Faiz Akhtar", owner_email, admin["id"])
+        )
+elif owner_password:
+    con.execute(
+        "INSERT INTO users(name,email,password,role,created_at) VALUES(?,?,?,?,?)",
+        ("Faiz Akhtar", owner_email,
+         generate_password_hash(owner_password), "admin",
+         datetime.now().isoformat(timespec="seconds"))
+    )
         count = con.execute("SELECT COUNT(*) AS n FROM faqs").fetchone()["n"]
         if count == 0:
             samples = [
