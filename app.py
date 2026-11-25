@@ -62,7 +62,7 @@ def init_db():
         if count == 0:
             samples = [
                 ("What are your business hours?", "Our support team is available Monday to Saturday, 9 AM to 6 PM.", "Business hours"),
-                ("How can I contact support?", "You can contact our support team through the contact form or email support@example.com.", "Support"),
+                ("How can I contact support?", "You can contact our support team through the contact form. Our team will assist you as soon as possible.", "Support"),
                 ("What is your refund policy?", "Eligible purchases can be returned within 7 days. Please keep your order details ready.", "Returns"),
                 ("How long does delivery take?", "Standard delivery usually takes 3–5 working days, depending on your location.", "Delivery"),
                 ("How can I track my order?", "Please sign in and open the Orders section to view your latest order status.", "Orders")
