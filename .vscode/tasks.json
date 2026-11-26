@@ -1,0 +1,14 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Open SpecLink Live Website",
+            "type": "shell",
+            "command": "Start-Process",
+            "args": [
+                "https://speclink.onrender.com"
+            ],
+            "problemMatcher": []
+        }
+    ]
+}
