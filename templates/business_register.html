@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Business Registration | AI Support{% endblock %}
+
+{% block content %}
+
+<section class="auth-wrap">
+
+    <div class="auth-side">
+        <div class="eyebrow">GROW YOUR BUSINESS</div>
+
+        <h1>Bring your business to AI Support.</h1>
+
+        <p>
+            Create your business account and manage customer
+            support, FAQs and conversations from one dashboard.
+        </p>
+
+        <div class="auth-note">
+            ✦ Smart · Simple · Business-focused
+        </div>
+    </div>
+
+    <form class="form-card" method="post">
+
+        <h2>Register your business</h2>
+        <p class="muted">Create your business workspace.</p>
+
+        <label>Owner Name</label>
+        <input type="text" name="name"
+               placeholder="Your full name" required>
+
+        <label>Business Name</label>
+        <input type="text" name="business_name"
+               placeholder="Your business name" required>
+
+        <label>Business Category</label>
+        <select name="category" required>
+            <option value="">Select category</option>
+            <option value="Healthcare">Healthcare</option>
+            <option value="Education">Education</option>
+            <option value="E-commerce">E-commerce</option>
+            <option value="Restaurant">Restaurant</option>
+            <option value="Retail">Retail</option>
+            <option value="Technology">Technology</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <label>Email Address</label>
+        <input type="email" name="email"
+               placeholder="you@example.com" required>
+
+        <label>Password</label>
+        <input type="password" name="password"
+               placeholder="At least 6 characters"
+               minlength="6" required>
+
+        <button class="btn primary full" type="submit">
+            Create Business Account →
+        </button>
+
+        <p class="switch">
+            Already registered?
+            <a href="{{ url_for('login') }}">Sign in</a>
+        </p>
+
+    </form>
+
+</section>
+
+{% endblock %}

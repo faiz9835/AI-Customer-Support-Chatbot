@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Business Dashboard | AI Support{% endblock %}
+
+{% block content %}
+
+<section class="container">
+
+    <div class="page-header">
+        <div class="eyebrow">BUSINESS WORKSPACE</div>
+        <h1>{{ business.business_name }}</h1>
+        <p class="muted">
+            {{ business.category }} · Manage your customer support.
+        </p>
+    </div>
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <h3>{{ stats.users }}</h3>
+            <p>Total Customers</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>{{ stats.faqs }}</h3>
+            <p>Total FAQs</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>{{ stats.chats }}</h3>
+            <p>Total Conversations</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>{{ stats.feedback }}</h3>
+            <p>Customer Feedback</p>
+        </div>
+
+    </div>
+
+    <div class="card" style="margin-top: 25px; padding: 22px;">
+        <h2>Recent Conversations</h2>
+
+        {% if recent %}
+            <div style="overflow-x: auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Customer</th>
+                            <th>Last Message</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for item in recent %}
+                        <tr>
+                            <td>{{ item.visitor_name or "Customer" }}</td>
+                            <td>{{ item.last_message or "No message" }}</td>
+                            <td>{{ item.created_at }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p class="muted">No conversations yet.</p>
+        {% endif %}
+    </div>
+
+</section>
+
+{% endblock %}
